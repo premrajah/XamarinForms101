@@ -19,16 +19,8 @@ namespace TrialApp.Pages
         public ListPage()
         {
             InitializeComponent();
-
-            _contact = new ObservableCollection<Models.Contact>
-                {
-                    new Models.Contact(){Name = "Prem Rajah", Status = "Let's talk", ImageUrl ="https://placeimg.com/100/100/people"},
-                     new Models.Contact(){Name = "Mike Jackson", Status = "Time to party", ImageUrl ="https://placeimg.com/100/100/people"},
-                     new Models.Contact(){Name = "Clark Kent", Status = "Zoom Zoom Zoom", ImageUrl ="https://placeimg.com/100/100/people"}
-
-                };
-
-            myList.ItemsSource = _contact;
+            
+            myList.ItemsSource = GetContacts();
         }
 
 
@@ -59,12 +51,25 @@ namespace TrialApp.Pages
             myList.EndRefresh();
         }
 
-        ObservableCollection<Models.Contact> GetContacts()
+        IEnumerable<Models.Contact> GetContacts(string searchText = null)
         {
-            return new ObservableCollection<Contact> {
+            var contacts = new ObservableCollection<Contact> {
                 new Models.Contact(){Name = "Bruce Wayne", Status = "I'm Batman", ImageUrl ="https://placeimg.com/100/100/people"},
-                new Models.Contact(){Name = "Peter Parker", Status = "Friendly", ImageUrl ="https://placeimg.com/100/100/people"}
+                new Models.Contact(){Name = "Peter Parker", Status = "Friendly", ImageUrl ="https://placeimg.com/100/100/people"},
+                new Models.Contact(){Name = "Prem Rajah", Status = "Let's talk", ImageUrl ="https://placeimg.com/100/100/people"},
+                     new Models.Contact(){Name = "Mike Jackson", Status = "Time to party", ImageUrl ="https://placeimg.com/100/100/people"},
+                     new Models.Contact(){Name = "Clark Kent", Status = "Zoom Zoom Zoom", ImageUrl ="https://placeimg.com/100/100/people"}
             };
+
+            if(string.IsNullOrWhiteSpace(searchText))
+                return contacts;
+
+            return contacts.Where(c => c.Name.StartsWith(searchText));
+        }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            myList.ItemsSource = GetContacts(e.NewTextValue);
         }
     }
-}
+} 

@@ -5,6 +5,7 @@
              Padding="0,2,0,0">
   <ContentPage.Content>
     <StackLayout>
+      <SearchBar Placeholder="Search..." TextChanged="SearchBar_TextChanged" HeightRequest="20" />
       <ListView x:Name="myList" 
                 SeparatorColor="Orange" 
                 HasUnevenRows="True"
