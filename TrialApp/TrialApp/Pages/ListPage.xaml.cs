@@ -33,5 +33,18 @@ namespace TrialApp.Pages
                   
             };
 		}
-	}
+
+        private void myList_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var contact = e.Item as Models.Contact;
+            DisplayAlert("Tapped", contact.Status, "OK");
+        }
+
+        private void myList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            //var contact = e.SelectedItem as Models.Contact;
+            //DisplayAlert("Selected", contact.Name, "OK");
+            myList.SelectedItem = null;
+        }
+    }
 }

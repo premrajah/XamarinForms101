@@ -5,7 +5,14 @@
              Padding="0,2,0,0">
     <ContentPage.Content>
         <StackLayout>
-      <ListView x:Name="myList" SeparatorColor="Orange" HasUnevenRows="True" IsGroupingEnabled="True" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding ShortTitle}" >
+      <ListView x:Name="myList" 
+                SeparatorColor="Orange" 
+                HasUnevenRows="True" 
+                IsGroupingEnabled="True" 
+                GroupDisplayBinding="{Binding Title}" 
+                GroupShortNameBinding="{Binding ShortTitle}" 
+                ItemTapped="myList_ItemTapped"
+                ItemSelected="myList_ItemSelected">
         <ListView.ItemTemplate>
           <DataTemplate>
             <!--<ViewCell>
