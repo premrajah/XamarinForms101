@@ -15,6 +15,7 @@ namespace TrialApp.Pages
 		public ImagePage ()
 		{
 			InitializeComponent ();
+            
 		}
 	}
 }

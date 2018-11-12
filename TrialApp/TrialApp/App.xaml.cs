@@ -11,7 +11,7 @@ namespace TrialApp
         {
             InitializeComponent();
 
-            MainPage = new Pages.ImagePage();
+            MainPage = new Pages.ListPage();
         }
 
         protected override void OnStart()

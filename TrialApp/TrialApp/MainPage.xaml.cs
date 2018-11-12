@@ -12,6 +12,8 @@ namespace TrialApp
         public MainPage()
         {
             InitializeComponent();
+
+            
         }
     }
 }
