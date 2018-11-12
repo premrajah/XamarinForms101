@@ -4,20 +4,21 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TrialApp.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TrialApp.Pages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ListPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ListPage : ContentPage
+    {
         private ObservableCollection<Models.Contact> _contact;
 
-		public ListPage ()
-		{
-			InitializeComponent ();
+
+        public ListPage()
+        {
+            InitializeComponent();
 
             _contact = new ObservableCollection<Models.Contact>
                 {
@@ -28,9 +29,9 @@ namespace TrialApp.Pages
                 };
 
             myList.ItemsSource = _contact;
-		}
+        }
 
-      
+
 
 
         private void call_clicked(object sender, EventArgs e)
@@ -45,6 +46,25 @@ namespace TrialApp.Pages
             var contact = (sender as MenuItem).CommandParameter as Models.Contact;
             _contact.Remove(contact);
 
+        }
+
+        /// <summary>
+        /// Refresh by pulling
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void myList_Refreshing(object sender, EventArgs e)
+        {
+            myList.ItemsSource = GetContacts();
+            myList.EndRefresh();
+        }
+
+        ObservableCollection<Models.Contact> GetContacts()
+        {
+            return new ObservableCollection<Contact> {
+                new Models.Contact(){Name = "Bruce Wayne", Status = "I'm Batman", ImageUrl ="https://placeimg.com/100/100/people"},
+                new Models.Contact(){Name = "Peter Parker", Status = "Friendly", ImageUrl ="https://placeimg.com/100/100/people"}
+            };
         }
     }
 }

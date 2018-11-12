@@ -7,7 +7,9 @@
     <StackLayout>
       <ListView x:Name="myList" 
                 SeparatorColor="Orange" 
-                HasUnevenRows="True">
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                Refreshing="myList_Refreshing">
         <ListView.ItemTemplate>
         <DataTemplate>
           <TextCell Text="{Binding Name}" Detail="{Binding Status}">
